@@ -1,73 +1,112 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		 <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-		<title>Supply chain map app</title>
-		<style type="text/css">
-html {height:100%}
-body {height:100%;margin:0;padding:0}
-#googleMap {height:100%}
-</style>
-		<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBHpJPkgi5rbVO3ksPnqRscuVTvKSTZTF8&sensor=false">
-		</script>
-		
-		<script type="text/javascript">
-		var myCenter=new google.maps.LatLng(51.508742,-0.120850);
-		var myCenter2=new google.maps.LatLng(55.864237,-4.251805999999988);
-		var newcastleLocation=new google.maps.LatLng(54.978252,-1.6177800000000389);
-			function initialize() {
-				
-        var mapOptions = {
-          center: myCenter2,
-          zoom: 6,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-        var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
-        var marker=new google.maps.Marker({  position:myCenter2,  animation:google.maps.Animation.BOUNCE, icon:'Images/icons/brewery1.png'});
-         var marker1=new google.maps.Marker({  position:myCenter,  animation:google.maps.Animation.BOUNCE, icon:'Images/icons/factory.png'});
-         var newcastle=new google.maps.Marker({  position:newcastleLocation,  animation:google.maps.Animation.BOUNCE, icon:'Images/icons/mine.png'});
+<head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <title>Supply chain map app</title>
+    <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.9.0/build/reset-fonts-grids/reset-fonts-grids.css">
+    <style type="text/css">
+        html
+        {
+            height: 100%;
+        }
 
-         var myTrip=[myCenter,newcastleLocation,myCenter2];
-var flightPath=new google.maps.Polyline({
-  path:myTrip,
-  strokeColor:"#0000FF",
-  strokeOpacity:0.8,
-  strokeWeight:2
-  });
+        body
+        {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
 
-var londonInfowindow = new google.maps.InfoWindow({
-  content:"This is London - Factory.."
-  });
-var newcastleInfowindow = new google.maps.InfoWindow({
-  content:"This is newcastle - Mining.."
-  });
-var ggInfowindow = new google.maps.InfoWindow({
-  content:"This is Glasgow - Brewary factory.."
-  });
+        #googleMap
+        {
+            height: 100%;
+        }
+    </style>
+    
 
-marker.setMap(map);
-marker1.setMap(map);
-newcastle.setMap(map);
-flightPath.setMap(map);
+    <script type="text/javascript">
+        var myCenter = new google.maps.LatLng(51.508742, -0.120850);
+        var myCenter2 = new google.maps.LatLng(55.864237, -4.251805999999988);
+        var newcastleLocation = new google.maps.LatLng(54.978252, -1.6177800000000389);
+        function initialize() {
+
+            var mapOptions = {
+                center: myCenter2,
+                zoom: 6,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+            var marker = new google.maps.Marker({ position: myCenter2, animation: google.maps.Animation.BOUNCE, icon: 'Images/icons/brewery1.png' });
+            var marker1 = new google.maps.Marker({ position: myCenter, animation: google.maps.Animation.BOUNCE, icon: 'Images/icons/factory.png' });
+            var newcastle = new google.maps.Marker({ position: newcastleLocation, animation: google.maps.Animation.BOUNCE, icon: 'Images/icons/mine.png' });
+
+            var myTrip = [myCenter, newcastleLocation, myCenter2];
+            var flightPath = new google.maps.Polyline({
+                path: myTrip,
+                strokeColor: "#0000FF",
+                strokeOpacity: 0.8,
+                strokeWeight: 2
+            });
+
+            var londonInfowindow = new google.maps.InfoWindow({
+                content: "This is London - Factory.."
+            });
+            var newcastleInfowindow = new google.maps.InfoWindow({
+                content: "This is newcastle - Mining.."
+            });
+            var ggInfowindow = new google.maps.InfoWindow({
+                content: "This is Glasgow - Brewary factory.."
+            });
+
+            marker.setMap(map);
+            marker1.setMap(map);
+            newcastle.setMap(map);
+            flightPath.setMap(map);
 
 
-google.maps.event.addListener(marker1, 'click', function() {
-  londonInfowindow.open(map,marker1);
-  });
+            google.maps.event.addListener(marker1, 'click', function () {
+                londonInfowindow.open(map, marker1);
+            });
 
-google.maps.event.addListener(newcastle, 'click', function() {
-  newcastleInfowindow.open(map,newcastle);
-  });
+            google.maps.event.addListener(newcastle, 'click', function () {
+                newcastleInfowindow.open(map, newcastle);
+            });
 
-google.maps.event.addListener(marker, 'click', function() {
-  ggInfowindow.open(map,marker);
-  });
+            google.maps.event.addListener(marker, 'click', function () {
+                ggInfowindow.open(map, marker);
+            });
 
-}
+        }
 
-		</script>
-	</head>
-	<body onload="initialize()" onunload="GUnload()">
-    <div id="map_canvas" style="width:100%; height:100%"></div>
-  </body>
+    </script>
+</head>
+<body onload="initialize()" onunload="GUnload()">
+    <div id="map_canvas" style="width: 100%; height: 80%"></div>
+    <div id="yui-main">
+        <div class="yui-b">
+            <div class="yui-g">
+                <div class="yui-u first">
+                    <fieldset style="border: 1px solid #ccc; text-align: left; margin-left: 10px; margin-top: 20px; padding: 5px;">
+                        <legend>SELECT A ROUTE</legend>
+                        <p style="padding: 5px;">
+                            <select>
+                                <option value="1">Route 1: China -> Hongkong -> Australia</option>
+                            </select>
+                        </p>
+                        <p style="padding: 5px;">
+                            <button type="button" style="padding: 2px;">Show route</button>
+                        </p>
+
+                    </fieldset>
+                </div>
+                <div class="yui-u"></div>
+            </div>
+        </div>
+    </div>
+</body>
+    <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+    <script src="Scripts/SimpleInheritenceJS.js"></script>
+    <script src="Scripts/Application.js"></script>
+    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBHpJPkgi5rbVO3ksPnqRscuVTvKSTZTF8&sensor=false">
+    </script>
 </html>
